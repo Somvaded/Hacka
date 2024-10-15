@@ -5,10 +5,13 @@ import { Button } from '@/components/ui/button'
 import { Dialog, DialogClose } from '@/components/ui/dialog'
 import { Separator } from '@/components/ui/separator'
 import { SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet'
+import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem } from '@radix-ui/react-dropdown-menu'
 
-import { Banknote, Folder, HomeIcon, ListIcon, Settings, ThumbsDownIcon } from 'lucide-react'
+import {  HomeIcon, ListIcon, User } from 'lucide-react'
 import Link from 'next/link'
 import { ReactNode } from 'react'
+import { BiBowlRice } from 'react-icons/bi'
+import { RiEmotionHappyLine } from 'react-icons/ri'
 
 export default function DashboardTopNav({ children }: { children: ReactNode }) {
   return (
@@ -37,35 +40,42 @@ export default function DashboardTopNav({ children }: { children: ReactNode }) {
                 </Link>
               </DialogClose>
               <DialogClose asChild>
-                <Link href="/dashboard/EmotionTracker">
+                <Link href="/dashboard/EatingHabits">
                   <Button variant="outline" className="w-full">
-                    <Folder className="mr-2 h-4 w-4" />
-                    Emotion Tracker
+                    <BiBowlRice className="mr-2 h-4 w-4" />
+                    Eating Habits
                   </Button>
                 </Link>
               </DialogClose>
               <DialogClose asChild>
-                <Link href="/dashboard/SocialInteractions">
+                <Link href="/dashboard/EmotionTracker">
                   <Button variant="outline" className="w-full">
-                    <Banknote className="mr-2 h-4 w-4" />
-                    Social Interactions
+                    <RiEmotionHappyLine className="mr-2 h-4 w-4" />
+                    Emotion Tracker
                   </Button>
                 </Link>
               </DialogClose>
               <Separator className="my-3" />
               <DialogClose asChild>
-                <Link href="/dashboard/settings">
+                <Link href="/account">
                   <Button variant="outline" className="w-full">
-                    <Settings className="mr-2 h-4 w-4" />
-                    Settings
+                    <User className="mr-2 h-4 w-4" />
+                    Account
                   </Button>
                 </Link>
               </DialogClose>
             </div>
           </SheetContent>
         </Dialog>
-        <div className="flex justify-center items-center gap-2 ml-auto">
-          <ThumbsDownIcon/>
+        <div className="flex justify-center items-center gap-2 ml-auto mr-6">
+        <DropdownMenu >
+  <DropdownMenuTrigger className='rounded-lg'><User className='m-2'/></DropdownMenuTrigger>
+  <DropdownMenuContent className='bg-gray-300 rounded-lg'>
+    
+    <DropdownMenuItem><Button variant='link' ><Link href='/account'>Account</Link></Button></DropdownMenuItem>
+    <DropdownMenuItem><Button variant='link' className=' text-red-500 font-semibold'><Link href='/logout'>Log Out</Link></Button></DropdownMenuItem>
+  </DropdownMenuContent>
+</DropdownMenu>
         </div>
       </header>
       {children}
